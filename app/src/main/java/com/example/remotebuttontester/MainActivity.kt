@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.Gravity
 import android.view.KeyEvent
 import android.view.MotionEvent
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
@@ -68,6 +67,7 @@ class MainActivity : Activity() {
             isFocusable = false
             isFocusableInTouchMode = false
         }
+
         eventLog = TextView(this).apply {
             textSize = 14f
             typeface = android.graphics.Typeface.MONOSPACE
@@ -77,16 +77,17 @@ class MainActivity : Activity() {
             gravity = Gravity.TOP
             text = "No button events yet.\n"
         }
+
         logScroll.addView(eventLog)
         root.addView(logScroll, LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             0,
             1f
         ))
+
         setContentView(root)
     }
 
-    /** Receives hardware-key events delivered to this Activity and keeps them from navigating the UI. */
     override fun dispatchKeyEvent(event: KeyEvent): Boolean {
         logKeyEvent(event)
         return true
